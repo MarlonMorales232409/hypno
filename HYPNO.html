@@ -1,0 +1,2335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hypno - Multiplica tus ventas con hologramas 3D</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style id="app-style">
+        :root {
+            --primary: #0a192f;
+            --secondary: #172a46;
+            --accent: #00c8ff;
+            --accent-glow: rgba(0, 200, 255, 0.5);
+            --text: #e6e6e6;
+            --text-dark: #b3b3b3;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--primary);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .bg-primary {
+            background-color: var(--primary);
+        }
+        
+        .bg-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .text-accent {
+            color: var(--accent);
+        }
+        
+        .border-accent {
+            border-color: var(--accent);
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px var(--accent-glow);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(0, 200, 255, 0.1);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+        
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background-image: radial-gradient(circle at 50% 50%, var(--secondary), var(--primary));
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://cdn.pixabay.com/photo/2021/05/18/08/04/digitization-6262631_1280.jpg');
+            background-size: cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .floating-hologram {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40%;
+            max-width: 500px;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px var(--accent-glow));
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(-50%) translateZ(0);
+            }
+            50% {
+                transform: translateY(-54%) translateZ(20px);
+            }
+            100% {
+                transform: translateY(-50%) translateZ(0);
+            }
+        }
+        
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        .section-title {
+            position: relative;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+        
+        .card {
+            background-color: var(--secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .metric-card {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            background-color: rgba(23, 42, 70, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent);
+        }
+        
+        .metric-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+        
+        .step-card {
+            border-left: 4px solid var(--accent);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .step-card::before {
+            content: "";
+            position: absolute;
+            left: -12px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+        
+        .comparison-container {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .comparison-item {
+            flex: 1;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .comparison-before {
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .comparison-after {
+            background-color: rgba(0, 200, 255, 0.05);
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 20px rgba(0, 200, 255, 0.2);
+        }
+        
+        .calculator {
+            background-color: var(--secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Estilos mejorados para formularios */
+        input, select, textarea {
+            background-color: rgba(10, 25, 47, 0.7);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            padding: 1rem 1.25rem;
+            border-radius: 0.75rem;
+            width: 100%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        input::before, select::before, textarea::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 200, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        input:hover, select:hover, textarea:hover {
+            border-color: rgba(0, 200, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 200, 255, 0.15);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow), 0 10px 30px rgba(0, 200, 255, 0.2);
+            outline: none;
+            transform: translateY(-3px);
+            background-color: rgba(10, 25, 47, 0.9);
+        }
+        
+        input:focus::before, select:focus::before, textarea:focus::before {
+            left: 100%;
+        }
+        
+        /* Animación de entrada para campos de formulario */
+        .form-group {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideInUp 0.6s ease forwards;
+        }
+        
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-group:nth-child(5) { animation-delay: 0.5s; }
+        .form-group:nth-child(6) { animation-delay: 0.6s; }
+        
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Efecto de brillo en hover para botones de formulario */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(45deg, var(--accent), #00a8cc);
+            border: none;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 30px var(--accent-glow), 0 15px 35px rgba(0, 200, 255, 0.3);
+        }
+        
+        /* Animación de carga para botones */
+        .btn-primary:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        
+        /* Efecto de validación visual - solo cuando el usuario interactúa */
+        input.validated:valid, select.validated:valid, textarea.validated:valid {
+            border-color: rgba(0, 255, 0, 0.3);
+        }
+        
+        input.validated:invalid, select.validated:invalid, textarea.validated:invalid {
+            border-color: rgba(255, 0, 0, 0.3);
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        /* Animaciones adicionales para formularios */
+        .form-field-animation {
+            position: relative;
+        }
+        
+        .form-field-animation::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #00a8cc);
+            transition: width 0.4s ease;
+        }
+        
+        .form-field-animation:focus-within::after {
+            width: 100%;
+        }
+        
+        /* Efecto de partículas flotantes */
+        .floating-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: floatParticle 8s infinite linear;
+        }
+        
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        /* Animación de éxito para formularios */
+        .form-success {
+            animation: successPulse 0.6s ease;
+        }
+        
+        @keyframes successPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Efecto de typing para labels */
+        .typing-label {
+            overflow: hidden;
+            border-right: 2px solid var(--accent);
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--accent); }
+        }
+        
+        label {
+            color: var(--text);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .problem-img, .solution-img {
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .result-card {
+            background-color: rgba(0, 200, 255, 0.05);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .result-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+        
+        .testimonial-card {
+            background-color: var(--secondary);
+            border-radius: 8px;
+            padding: 2rem;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+        }
+        
+        .testimonial-card::before {
+            content: """;
+            position: absolute;
+            top: 0;
+            left: 20px;
+            font-size: 6rem;
+            color: var(--accent);
+            opacity: 0.3;
+            line-height: 1;
+            font-family: serif;
+        }
+        
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .floating-cta {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+            animation: pulse 2s infinite;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.5s ease;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: auto;
+            max-width: none;
+        }
+        
+        .floating-cta.compact {
+            padding: 0.75rem;
+            border-radius: 50%;
+            width: 3.5rem;
+            height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 3.5rem;
+            max-width: 3.5rem;
+        }
+        
+        .floating-cta.compact .floating-text {
+            opacity: 0;
+            width: 0;
+            margin: 0;
+            transform: scale(0);
+            position: absolute;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-text {
+            transition: all 0.3s ease;
+        }
+        
+        /* FAQ Styles */
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            transition: all 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+        
+        .faq-answer.active {
+            max-height: 200px;
+        }
+        
+        /* Video Gallery Styles */
+        .video-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 200, 255, 0.2);
+            border-color: var(--accent);
+        }
+        
+        .play-overlay {
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .video-card:hover .play-overlay {
+            opacity: 1;
+        }
+        
+        .featured-video {
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+        
+        /* Technology Cards */
+        .tech-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 200, 255, 0.3);
+            border-color: var(--accent);
+        }
+        
+        /* Events Map Styles */
+        .event-item {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .event-item:hover {
+            transform: translateX(5px);
+            border-color: var(--accent);
+            box-shadow: 0 5px 15px rgba(0, 200, 255, 0.2);
+        }
+        
+        .stat-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-card:hover {
+            transform: scale(1.05);
+            border-color: var(--accent);
+            box-shadow: 0 10px 25px rgba(0, 200, 255, 0.2);
+        }
+        
+        .floating-cta.compact .floating-icon {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 var(--accent-glow);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(0, 200, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 200, 255, 0);
+            }
+        }
+        
+        .form-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .form-content {
+            background: linear-gradient(135deg, var(--secondary) 0%, rgba(23, 42, 70, 0.95) 100%);
+            padding: 2.5rem;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 40px var(--accent-glow), 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: slideInModal 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+        }
+        
+        @keyframes slideInModal {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .form-content::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--accent), #00a8cc, var(--accent));
+            border-radius: 16px;
+            z-index: -1;
+            animation: borderGlow 4s ease-in-out infinite;
+        }
+        
+        @keyframes borderGlow {
+            0% { 
+                opacity: 0.5; 
+                filter: blur(0px);
+            }
+            25% { 
+                opacity: 1; 
+                filter: blur(0px);
+            }
+            50% { 
+                opacity: 0.8; 
+                filter: blur(2px);
+                -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+            }
+            75% { 
+                opacity: 1; 
+                filter: blur(0px);
+            }
+            100% { 
+                opacity: 0.5; 
+                filter: blur(0px);
+            }
+        }
+        
+        .form-content {
+            background: linear-gradient(135deg, var(--secondary) 0%, rgba(23, 42, 70, 0.95) 100%);
+            padding: 2.5rem;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 40px var(--accent-glow), 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: slideInModal 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .form-content.glass-effect {
+            background: linear-gradient(135deg, rgba(23, 42, 70, 0.3) 0%, rgba(10, 25, 47, 0.2) 100%);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            box-shadow: 
+                0 0 40px var(--accent-glow), 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: var(--text);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: var(--accent);
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 200, 255, 0.2) 100%);
+            z-index: 1;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 8px #00ffe7, 0 0 16px #00ffe7, 0 0 24px #00ffe7;
+        }
+        
+        .navbar {
+            background-color: rgba(10, 25, 47, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            background-color: rgba(10, 25, 47, 0.95);
+        }
+        
+        .nav-link {
+            color: var(--text);
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--accent);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover {
+            color: var(--accent);
+        }
+        
+        .nav-link:hover::after {
+            width: 70%;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                padding: 8rem 0 4rem;
+                text-align: center;
+            }
+            
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .hero-content .md\\:w-1/2 {
+                width: 100%;
+                max-width: 600px;
+            }
+            
+            .floating-hologram {
+                position: relative;
+                width: 80%;
+                max-width: 300px;
+                margin: 2rem auto 0;
+                right: auto;
+                top: auto;
+                transform: none;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .comparison-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .navbar-collapse {
+                background-color: var(--secondary);
+                padding: 1rem;
+                border-radius: 0 0 10px 10px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-top: none;
+            }
+            
+            /* Mejorar centrado de botones en móviles */
+            .btn-primary, .btn-outline {
+                display: inline-block;
+                text-align: center;
+                min-width: 200px;
+            }
+            
+            /* Mejorar centrado del footer en móviles */
+            footer {
+                text-align: center;
+            }
+            
+            footer .grid {
+                justify-items: center;
+            }
+            
+            footer .grid > div {
+                text-align: center;
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            footer ul {
+                display: inline-block;
+                text-align: left;
+            }
+            
+            footer .flex.space-x-4 {
+                justify-content: center;
+            }
+            
+            footer .border-t {
+                text-align: center;
+            }
+            
+            footer .border-t .flex {
+                justify-content: center;
+                text-align: center;
+            }
+            
+            footer .border-t .flex > div {
+                text-align: center;
+            }
+        }
+    </style>
+    <!-- <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> -->
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar py-4" id="navbar">
+        <div class="container mx-auto px-4 flex items-center justify-between">
+            <a href="javascript:void(0)" class="text-2xl font-bold text-white flex items-center">
+                <span class="text-accent mr-2">HYPNO</span>
+                <span class="text-xs uppercase tracking-widest text-text-dark">Argentina</span>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#problema" class="nav-link">Problema</a>
+                <a href="#solucion" class="nav-link">Solución</a>
+                <a href="#resultados" class="nav-link">Resultados</a>
+                <a href="#proceso" class="nav-link">Proceso</a>
+                <a href="#casos" class="nav-link">Casos de éxito</a>
+                <a href="#galeria" class="nav-link">Galería</a>
+                <a href="#tecnologia" class="nav-link">Tecnología</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#contacto" class="btn-primary">Contactar</a>
+            </div>
+            
+            <button class="md:hidden text-white text-2xl" id="mobile-menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <div class="md:hidden navbar-collapse hidden w-full mt-2 px-4" id="mobile-menu">
+            <div class="flex flex-col space-y-3">
+                <a href="#problema" class="nav-link">Problema</a>
+                <a href="#solucion" class="nav-link">Solución</a>
+                <a href="#resultados" class="nav-link">Resultados</a>
+                <a href="#proceso" class="nav-link">Proceso</a>
+                <a href="#casos" class="nav-link">Casos de éxito</a>
+                <a href="#galeria" class="nav-link">Galería</a>
+                <a href="#tecnologia" class="nav-link">Tecnología</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#contacto" class="btn-primary text-center mt-4">Contactar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="overlay"></div>
+        <div class="container mx-auto px-4 hero-content">
+            <div class="md:w-1/2">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight" data-aos="fade-up">
+                    <span>HYPNO HOLOGRAMAS </span>
+                    <span class="text-accent">3D DE IMPACTO.</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-text-dark" data-aos="fade-up" data-aos-delay="200">
+                    No vendemos tecnología. Vendemos resultados: más atención, más leads, más ventas.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center sm:justify-start" data-aos="fade-up" data-aos-delay="400">
+                    <button class="btn-primary open-modal w-full sm:w-auto text-center">Conocer Más</button>
+                    <a href="#calculadora" class="btn-outline w-full sm:w-auto text-center">Agendar Consulta</a>
+                </div>
+                <div class="mt-12 grid grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="600">
+                    <div>
+                        <div class="text-2xl text-accent font-bold">+500%</div>
+                        <div class="text-sm text-text-dark">Más visitantes</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl text-accent font-bold">+300%</div>
+                        <div class="text-sm text-text-dark">Más leads</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl text-accent font-bold">450%</div>
+                        <div class="text-sm text-text-dark">ROI promedio</div>
+                    </div>
+                </div>
+            </div>
+            <div id="hero-animation" class="floating-hologram" data-aos="zoom-in" data-aos-delay="300">
+                <dotlottie-wc 
+                    src="https://lottie.host/ae00f118-41f3-4be8-a850-d34bd3d4cfab/J7nTXouu2m.lottie"
+                    style="width: 100%; height: auto; max-width: 500px;"
+                    speed="1"
+                    autoplay
+                    loop>
+                </dotlottie-wc>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="section bg-secondary" id="problema">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title" data-aos="fade-right">El Problema</h2>
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h3 class="text-3xl mb-6 font-bold">Tu stand pasa desapercibido en ferias y eventos</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                            <p>Tu competencia capta la atención mientras tu equipo espera visitantes</p>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                            <p>Inviertes en eventos pero no generas suficientes leads de calidad</p>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                            <p>Tu producto no destaca visualmente entre decenas de competidores</p>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                            <p>La gente pasa por tu stand sin detenerse o interactuar</p>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                            <p>El ROI de tu participación en eventos es bajo o difícil de medir</p>
+                        </li>
+                    </ul>
+                </div>
+                <div data-aos="fade-left">
+                    <div class="relative rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1730917642886-c179054a080e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHw2M3x8aG9sb2dyYW1hJTIwZXZlbnRvfGVufDB8fHx8MTc1MjU5MzIzM3ww&ixlib=rb-4.1.0&q=80&w=1080" alt="Stand tradicional" class="problem-img">
+                        <div class="overlay absolute inset-0 flex items-center justify-center">
+                            <h3 class="text-2xl font-bold text-center">Stand tradicional:<br>Invisible entre la multitud</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="section" id="solucion">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title" data-aos="fade-right">La Solución</h2>
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right" class="order-2 md:order-1">
+                    <div class="relative rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1589820832207-788d969e5bc4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHw3N3x8SG9sb2dyYW0lMjAzRCUyMFNvbHV0aW9ufGVufDB8fHx8MTc1MjU5MzQxMXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Hologram 3D Solution" class="solution-img">
+                        <div class="overlay absolute inset-0 flex items-center justify-center">
+                            <h3 class="text-2xl font-bold text-center">Stand con hologramas:<br>El centro de atención</h3>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="fade-left" class="order-1 md:order-2">
+                    <h3 class="text-3xl mb-6 font-bold">Tu producto flotando en el aire genera multitudes y ventas</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mt-1 mr-3"></i>
+                            <p>Atrae multitudes que se detienen a observar y fotografiar tu producto</p>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mt-1 mr-3"></i>
+                            <p>Destaca visualmente por encima de toda tu competencia</p>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mt-1 mr-3"></i>
+                            <p>Genera viralidad cuando los visitantes comparten en redes sociales</p>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mt-1 mr-3"></i>
+                            <p>Capta datos de leads mientras interactúan con el holograma</p>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mt-1 mr-3"></i>
+                            <p>Medimos el impacto y ROI con métricas precisas post-evento</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-16" data-aos="fade-up">
+                <h3 class="text-2xl font-bold mb-6 text-center">Comparación de impacto</h3>
+                <div class="comparison-container">
+                    <div class="comparison-item comparison-before">
+                        <h4 class="text-xl mb-3">Stand tradicional</h4>
+                        <img src="https://images.unsplash.com/photo-1641855267945-4b89b057418f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHw1M3x8aG9sb2dyYW1hfGVufDB8fHx8MTc1MjU5MzE4M3ww&ixlib=rb-4.1.0&q=80&w=1080" alt="Stand tradicional" class="w-full h-48 object-cover rounded mb-4">
+                        <ul class="text-left space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-minus-circle text-red-500 mr-2"></i>
+                                <span>Pasa desapercibido</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-minus-circle text-red-500 mr-2"></i>
+                                <span>Visitantes limitados</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-minus-circle text-red-500 mr-2"></i>
+                                <span>Pocos leads generados</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-minus-circle text-red-500 mr-2"></i>
+                                <span>Baja recordación de marca</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-minus-circle text-red-500 mr-2"></i>
+                                <span>Sin viralidad en redes</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item comparison-after">
+                        <h4 class="text-xl mb-3 text-accent">Stand con hologramas</h4>
+                        <img src="https://images.unsplash.com/photo-1671417722838-3fbaa7f66203?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwxMXx8aG9sb2dyYW1hfGVufDB8fHx8MTc1MjU5MzE2OXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Stand con hologramas" class="w-full h-48 object-cover rounded mb-4">
+                        <ul class="text-left space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-plus-circle text-accent mr-2"></i>
+                                <span>Atracción principal del evento</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-plus-circle text-accent mr-2"></i>
+                                <span>500% más visitantes</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-plus-circle text-accent mr-2"></i>
+                                <span>300% más leads cualificados</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-plus-circle text-accent mr-2"></i>
+                                <span>85% mayor recordación</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-plus-circle text-accent mr-2"></i>
+                                <span>10x más compartidos en redes</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="section bg-secondary" id="resultados">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title" data-aos="fade-right">Resultados Medibles</h2>
+            <p class="mb-12 md:w-2/3" data-aos="fade-up">No vendemos tecnología, vendemos resultados comerciales medibles que impactan directamente en tu ROI y ventas posteriores al evento.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="metric-card" data-aos="fade-up">
+                    <div class="text-5xl mb-3">
+                        <i class="fas fa-users text-accent"></i>
+                    </div>
+                    <div class="metric-number">
+                        <span class="counter" data-target="500">0</span>%
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Más visitantes</h3>
+                    <p class="text-text-dark">Multiplica el tráfico a tu stand gracias al efecto visual único</p>
+                </div>
+                
+                <div class="metric-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-5xl mb-3">
+                        <i class="fas fa-bullseye text-accent"></i>
+                    </div>
+                    <div class="metric-number">
+                        <span class="counter" data-target="300">0</span>%
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Más leads</h3>
+                    <p class="text-text-dark">Incrementa tu base de datos con prospectos de calidad</p>
+                </div>
+                
+                <div class="metric-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-5xl mb-3">
+                        <i class="fas fa-share-alt text-accent"></i>
+                    </div>
+                    <div class="metric-number">
+                        <span class="counter" data-target="10">0</span>x
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Más viralidad</h3>
+                    <p class="text-text-dark">Amplifica tu alcance con fotos y videos compartidos en redes</p>
+                </div>
+                
+                <div class="metric-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-5xl mb-3">
+                        <i class="fas fa-chart-line text-accent"></i>
+                    </div>
+                    <div class="metric-number">
+                        <span class="counter" data-target="450">0</span>%
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">ROI promedio</h3>
+                    <p class="text-text-dark">Retorno sobre inversión documentado en nuestros casos de éxito</p>
+                </div>
+            </div>
+            
+            <!-- Sección de calculadora de ROI oculta -->
+            <div class="mt-16 hidden" id="calculadora" data-aos="fade-up">
+                <h3 class="text-2xl font-bold mb-6 text-center">Calculadora de ROI</h3>
+                <div class="calculator">
+                    <form id="roi-calculator">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <div class="mb-4">
+                                    <label class="block mb-2">Nombre de empresa</label>
+                                    <input type="text" name="company" placeholder="Ej: Tu Empresa S.A." required>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block mb-2">Tipo de evento</label>
+                                    <select name="eventType" required>
+                                        <option value="">Seleccionar...</option>
+                                        <option value="feria">Feria comercial</option>
+                                        <option value="lanzamiento">Lanzamiento de producto</option>
+                                        <option value="corporativo">Evento corporativo</option>
+                                        <option value="retail">Punto de venta / Retail</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block mb-2">Fecha del evento</label>
+                                    <input type="date" name="eventDate" required>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block mb-2">Visitantes esperados</label>
+                                    <input type="number" name="visitors" placeholder="Ej: 500" min="1" required>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="mb-4">
+                                    <label class="block mb-2">Presupuesto para el stand (USD)</label>
+                                    <input type="number" name="budget" placeholder="Ej: 5000" min="1" required>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block mb-2">Valor promedio de cada cliente (USD)</label>
+                                    <input type="number" name="customerValue" placeholder="Ej: 1000" min="1" required>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block mb-2">Tasa de conversión actual (%)</label>
+                                    <input type="number" name="conversionRate" placeholder="Ej: 5" min="0.1" max="100" step="0.1" required>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block mb-2">Email</label>
+                                    <input type="email" name="email" placeholder="Ej: tu@empresa.com" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 text-center">
+                            <button type="submit" class="btn-primary">Calcular mi ROI potencial</button>
+                        </div>
+                    </form>
+                    
+                    <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 hidden" id="results-container">
+                        <div class="result-card">
+                            <h4 class="text-lg mb-3">Visitantes proyectados</h4>
+                            <div class="result-number"><span id="visitor-result">0</span></div>
+                            <p class="text-text-dark">Con hologramas Hypno</p>
+                        </div>
+                        <div class="result-card">
+                            <h4 class="text-lg mb-3">Leads proyectados</h4>
+                            <div class="result-number"><span id="leads-result">0</span></div>
+                            <p class="text-text-dark">Con hologramas Hypno</p>
+                        </div>
+                        <div class="result-card">
+                            <h4 class="text-lg mb-3">ROI proyectado</h4>
+                            <div class="result-number"><span id="roi-result">0</span>%</div>
+                            <p class="text-text-dark">Con hologramas Hypno</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section" id="proceso">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title" data-aos="fade-right">Nuestro Proceso</h2>
+            <p class="mb-12 md:w-2/3" data-aos="fade-up">Trabajamos de forma estructurada para garantizar el máximo impacto y retorno de inversión en tu próximo evento.</p>
+            
+            <div class="grid md:grid-cols-2 gap-x-12 gap-y-16">
+                <div class="step-card" data-aos="fade-right">
+                    <h3 class="text-2xl font-bold mb-4">1. Análisis pre-evento</h3>
+                    <p class="mb-4">Estudiamos detalladamente tu espacio, competencia y objetivos comerciales para diseñar la estrategia perfecta.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                            <span>Análisis competitivo del evento</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                            <span>Planificación del espacio y flujo de visitantes</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                            <span>Definición de objetivos y KPIs</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="step-card" data-aos="fade-left">
+                    <h3 class="text-2xl font-bold mb-4">2. Diseño 3D personalizado</h3>
+                    <p class="mb-4">Creamos el contenido holográfico perfecto para tu producto, servicio o marca que generará el máximo impacto.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                            <span>Modelado 3D de tu producto/logo</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                            <span>Animaciones personalizadas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                            <span>Integración con tu identidad visual</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="step-card" data-aos="fade-right">
+                    <h3 class="text-2xl font-bold mb-4">3. Instalación y operación</h3>
+                    <p class="mb-4">Nos encargamos de toda la logística, instalación y operación durante el evento para que tú solo te enfoques en vender.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                            <span>Montaje y calibración del sistema</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                            <span>Soporte técnico durante todo el evento</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                            <span>Capacitación a tu equipo comercial</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="step-card" data-aos="fade-left">
+                    <h3 class="text-2xl font-bold mb-4">4. Métricas post-evento</h3>
+                    <p class="mb-4">Medimos y documentamos los resultados para que puedas cuantificar el ROI y el impacto en tu negocio.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                            <span>Análisis de tráfico y engagement</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                            <span>Medición de leads generados</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                            <span>Reporte de viralidad y alcance digital</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cases Section -->
+    <section class="section bg-secondary" id="casos">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title" data-aos="fade-right">Casos de Éxito</h2>
+            <p class="mb-12 md:w-2/3" data-aos="fade-up">Empresas que ya están multiplicando sus ventas con nuestros hologramas 3D.</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card" data-aos="fade-up">
+                    <div class="testimonial-content">
+                        <div class="flex items-center mb-6">
+                            <img src="https://cdn.pixabay.com/photo/2015/12/11/09/30/mobile-phone-1087845_1280.jpg" alt="Samsung logo" class="h-10">
+                        </div>
+                        <p class="mb-6 italic">"Nuestro stand en Expo Retail generó 3 veces más leads que el año anterior. El holograma de nuestro nuevo smartphone atrajo multitudes que se detenían a fotografiar y compartir en redes."</p>
+                        <div class="flex items-center">
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Testimonial author" class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div>
+                                <h4 class="font-semibold">Marina Gómez</h4>
+                                <p class="text-xs text-text-dark">Marketing Director, Samsung Argentina</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t border-gray-700">
+                            <div class="flex items-center justify-between mb-2">
+                                <span>Aumento de leads:</span>
+                                <span class="text-accent font-bold">+320%</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span>ROI del evento:</span>
+                                <span class="text-accent font-bold">470%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-content">
+                        <div class="flex items-center mb-6">
+                            <img src="https://images.unsplash.com/photo-1709417904871-e788ac759b3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwxfHxCTVclMjBsb2dvJTIwcG5nfGVufDB8fHx8MTc1MjU5MzQ1OXww&ixlib=rb-4.1.0&q=80&w=1080" alt="BMW logo" class="h-10">
+                        </div>
+                        <p class="mb-6 italic">"El holograma de nuestro nuevo modelo generó una cola de más de 200 personas durante el Salón del Automóvil. La experiencia inmersiva permitió a los visitantes ver detalles que normalmente pasarían desapercibidos."</p>
+                        <div class="flex items-center">
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Testimonial author" class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div>
+                                <h4 class="font-semibold">Carlos Méndez</h4>
+                                <p class="text-xs text-text-dark">Events Manager, BMW Argentina</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t border-gray-700">
+                            <div class="flex items-center justify-between mb-2">
+                                <span>Incremento en test drives:</span>
+                                <span class="text-accent font-bold">+280%</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span>Shares en redes:</span>
+                                <span class="text-accent font-bold">12x más</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-content">
+                        <div class="flex items-center mb-6">
+                            <img src="https://images.unsplash.com/photo-1731087357396-0fbd4fd3ab23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwyMnx8U3RhcnR1cCUyMFRlY2glMjBsb2dvJTIwZXZlbnR8ZW58MHx8fHwxNzUyNTkzNDQxfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Startup Tech logo" class="h-10">
+                        </div>
+                        <p class="mb-6 italic">"Como startup, teníamos un presupuesto limitado para nuestra primera exposición. El holograma de nuestra app nos hizo destacar entre empresas mucho más grandes. Facturamos 40% más de lo proyectado gracias al impacto visual."</p>
+                        <div class="flex items-center">
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Testimonial author" class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div>
+                                <h4 class="font-semibold">Laura Sánchez</h4>
+                                <p class="text-xs text-text-dark">CEO, TechArg Startup</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t border-gray-700">
+                            <div class="flex items-center justify-between mb-2">
+                                <span>Ventas post-evento:</span>
+                                <span class="text-accent font-bold">+40%</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span>Nuevos usuarios:</span>
+                                <span class="text-accent font-bold">+510%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sección "Confían en nosotros" oculta -->
+            <div class="mt-16 text-center hidden" data-aos="fade-up">
+                <h3 class="text-2xl font-bold mb-6">Confían en nosotros</h3>
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70">
+                    <img src="https://cdn.pixabay.com/photo/2013/01/29/00/47/google-76517_1280.png" alt="Google" class="h-10 md:h-12">
+                    <img src="https://cdn.pixabay.com/photo/2015/05/26/09/37/paypal-784403_1280.png" alt="PayPal" class="h-10 md:h-12">
+                    <img src="https://via.placeholder.com/800x600/4F46E5/FFFFFF?text=visa" alt="Visa" class="h-10 md:h-12">
+                    <img src="https://cdn.pixabay.com/photo/2013/02/12/09/07/microsoft-80658_1280.png" alt="Microsoft" class="h-10 md:h-12">
+                    <img src="https://cdn.pixabay.com/photo/2015/04/23/17/41/node-js-736399_1280.png" alt="NodeJS" class="h-10 md:h-12">
+                    <img src="https://cdn.pixabay.com/photo/2015/10/31/12/54/google-1015751_1280.png" alt="Google" class="h-10 md:h-12">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contacto">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="section-title">Planifica tu próximo evento</h2>
+                    <p class="mb-8">Completa el formulario y nos pondremos en contacto contigo para diseñar una estrategia personalizada que multiplique tus ventas en el próximo evento.</p>
+                    
+                    <form id="contact-form">
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block mb-2">Nombre completo</label>
+                                <input type="text" name="name" required>
+                            </div>
+                            <div>
+                                <label class="block mb-2">Empresa</label>
+                                <input type="text" name="company" required>
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block mb-2">Email</label>
+                                <input type="email" name="email" required>
+                            </div>
+                            <div>
+                                <label class="block mb-2">Teléfono</label>
+                                <input type="tel" name="phone" required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block mb-2">Próximo evento</label>
+                            <input type="text" name="event" placeholder="Ej: Expo Retail 2025" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block mb-2">Mensaje</label>
+                            <textarea name="message" rows="4" required></textarea>
+                        </div>
+                        <div class="mt-6">
+                            <button type="submit" class="btn-primary w-full">Solicitar asesoría personalizada</button>
+                        </div>
+                    </form>
+                </div>
+                <div data-aos="fade-left">
+                    <div class="bg-secondary p-8 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-6">¿Por qué contactarnos ahora?</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-calendar-check text-accent mt-1 mr-3 text-xl"></i>
+                                <div>
+                                    <h4 class="font-semibold">Agenda limitada</h4>
+                                    <p class="text-text-dark">Solo atendemos 5 eventos por mes para garantizar resultados extraordinarios.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-bolt text-accent mt-1 mr-3 text-xl"></i>
+                                <div>
+                                    <h4 class="font-semibold">Tiempo de preparación</h4>
+                                    <p class="text-text-dark">Necesitamos de 3 a 4 semanas para diseñar e implementar tu estrategia holográfica.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chart-line text-accent mt-1 mr-3 text-xl"></i>
+                                <div>
+                                    <h4 class="font-semibold">ROI garantizado</h4>
+                                    <p class="text-text-dark">Si no aumentas tus leads en al menos 200%, te devolvemos el dinero.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-trophy text-accent mt-1 mr-3 text-xl"></i>
+                                <div>
+                                    <h4 class="font-semibold">Exclusividad</h4>
+                                    <p class="text-text-dark">No trabajamos con dos empresas del mismo sector en el mismo evento.</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="mt-8 p-4 bg-primary rounded-lg">
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-phone-alt text-accent mr-3"></i>
+                                <span>+54 11 5555-7890</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-accent mr-3"></i>
+                                <span>ventas@hypno.com.ar</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section bg-secondary" id="faq">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title" data-aos="fade-right">Preguntas Frecuentes</h2>
+            <p class="mb-12 md:w-2/3" data-aos="fade-up">Resolvemos las dudas más comunes sobre nuestros hologramas 3D y su implementación en eventos.</p>
+            
+            <div class="max-w-4xl mx-auto space-y-4">
+                <div class="faq-item bg-primary rounded-lg overflow-hidden" data-aos="fade-up">
+                    <button class="faq-question w-full p-6 text-left flex justify-between items-center hover:bg-secondary transition-colors">
+                        <span class="font-semibold text-lg">¿Cuánto cuesta implementar hologramas en mi evento?</span>
+                        <i class="fas fa-chevron-down text-accent transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0">
+                        <p class="text-text-dark">Los costos varían según el tipo de holograma, duración del evento y complejidad del contenido. Nuestros proyectos van desde $5,000 USD para hologramas básicos hasta $25,000 USD para experiencias inmersivas completas. Te ofrecemos una consultoría gratuita para evaluar tu proyecto específico.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-primary rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <button class="faq-question w-full p-6 text-left flex justify-between items-center hover:bg-secondary transition-colors">
+                        <span class="font-semibold text-lg">¿Cuánto tiempo necesitan para preparar un holograma?</span>
+                        <i class="fas fa-chevron-down text-accent transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0">
+                        <p class="text-text-dark">El tiempo de preparación depende de la complejidad del proyecto. Hologramas simples: 1-2 semanas. Hologramas complejos con animaciones personalizadas: 3-4 semanas. Para eventos urgentes, tenemos opciones express disponibles.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-primary rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <button class="faq-question w-full p-6 text-left flex justify-between items-center hover:bg-secondary transition-colors">
+                        <span class="font-semibold text-lg">¿Qué tipo de contenido puedo mostrar en hologramas?</span>
+                        <i class="fas fa-chevron-down text-accent transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0">
+                        <p class="text-text-dark">Puedes mostrar productos 3D, logos animados, presentaciones interactivas, demostraciones de productos, personajes virtuales, y cualquier contenido que puedas imaginar. Nuestro equipo de diseño 3D crea contenido personalizado para tu marca.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-primary rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <button class="faq-question w-full p-6 text-left flex justify-between items-center hover:bg-secondary transition-colors">
+                        <span class="font-semibold text-lg">¿Los hologramas funcionan en cualquier espacio?</span>
+                        <i class="fas fa-chevron-down text-accent transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0">
+                        <p class="text-text-dark">Nuestros hologramas se adaptan a diferentes espacios. Necesitamos evaluar la iluminación, el espacio disponible y las condiciones ambientales. Realizamos una visita técnica gratuita para asegurar la mejor experiencia.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-primary rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                    <button class="faq-question w-full p-6 text-left flex justify-between items-center hover:bg-secondary transition-colors">
+                        <span class="font-semibold text-lg">¿Ofrecen garantía de resultados?</span>
+                        <i class="fas fa-chevron-down text-accent transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0">
+                        <p class="text-text-dark">Sí, garantizamos un aumento mínimo del 200% en leads generados. Si no alcanzas este resultado, te devolvemos el dinero. Nuestro historial muestra que el 95% de nuestros clientes superan esta meta.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-primary rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="500">
+                    <button class="faq-question w-full p-6 text-left flex justify-between items-center hover:bg-secondary transition-colors">
+                        <span class="font-semibold text-lg">¿Qué incluye el servicio completo?</span>
+                        <i class="fas fa-chevron-down text-accent transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden p-6 pt-0">
+                        <p class="text-text-dark">Incluye diseño 3D personalizado, instalación, operación durante el evento, soporte técnico, capacitación a tu equipo, métricas post-evento y reporte de ROI. Todo en un servicio llave en mano.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Gallery Section -->
+    <section class="section" id="galeria">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title" data-aos="fade-right">Galería de Videos</h2>
+            <p class="mb-12 md:w-2/3" data-aos="fade-up">Descubre nuestros hologramas en acción. Cada video muestra el impacto real que generamos en diferentes tipos de eventos.</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <div class="video-card bg-secondary rounded-lg overflow-hidden" data-aos="fade-up">
+                    <div class="video-container relative">
+                        <iframe class="w-full h-48" src="https://www.youtube.com/embed/erU4lP3-1tA" frameborder="0" allowfullscreen></iframe>
+                        <div class="play-overlay absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-play-circle text-4xl text-accent"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold mb-2">Holograma Producto Samsung</h4>
+                        <p class="text-text-dark text-sm">Demostración de smartphone flotando en 3D</p>
+                    </div>
+                </div>
+
+                <div class="video-card bg-secondary rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="video-container relative">
+                        <iframe class="w-full h-48" src="https://www.youtube.com/embed/wgF2PBTz4r4" frameborder="0" allowfullscreen></iframe>
+                        <div class="play-overlay absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-play-circle text-4xl text-accent"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold mb-2">Holograma Corporativo</h4>
+                        <p class="text-text-dark text-sm">Presentación ejecutiva con elementos 3D</p>
+                    </div>
+                </div>
+
+                <div class="video-card bg-secondary rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="video-container relative">
+                        <iframe class="w-full h-48" src="https://www.youtube.com/embed/inxjxCFOnm8" frameborder="0" allowfullscreen></iframe>
+                        <div class="play-overlay absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-play-circle text-4xl text-accent"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold mb-2">Holograma Retail</h4>
+                        <p class="text-text-dark text-sm">Experiencia interactiva en punto de venta</p>
+                    </div>
+                </div>
+
+                <div class="video-card bg-secondary rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <div class="video-container relative">
+                        <iframe class="w-full h-48" src="https://www.youtube.com/embed/NekVCxk02PI" frameborder="0" allowfullscreen></iframe>
+                        <div class="play-overlay absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-play-circle text-4xl text-accent"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold mb-2">Holograma Lanzamiento</h4>
+                        <p class="text-text-dark text-sm">Revelación de producto con efectos especiales</p>
+                    </div>
+                </div>
+
+                <div class="video-card bg-secondary rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                    <div class="video-container relative">
+                        <iframe class="w-full h-48" src="https://www.youtube.com/embed/Bzs77UkqvF4" frameborder="0" allowfullscreen></iframe>
+                        <div class="play-overlay absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-play-circle text-4xl text-accent"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold mb-2">Holograma Interactivo</h4>
+                        <p class="text-text-dark text-sm">Experiencia táctil con sensores de movimiento</p>
+                    </div>
+                </div>
+
+                <div class="video-card bg-secondary rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="500">
+                    <div class="video-container relative">
+                        <iframe class="w-full h-48" src="https://www.youtube.com/embed/KLANYgSn26A" frameborder="0" allowfullscreen></iframe>
+                        <div class="play-overlay absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-play-circle text-4xl text-accent"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-semibold mb-2">Holograma Arquitectónico</h4>
+                        <p class="text-text-dark text-sm">Visualización de proyectos inmobiliarios</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Destacado -->
+            <div class="featured-video bg-secondary rounded-lg overflow-hidden" data-aos="fade-up">
+                <div class="video-container relative">
+                    <iframe class="w-full h-96" src="https://www.youtube.com/embed/EVNrq4-XWRY" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold mb-4">Compilación de Nuestros Mejores Trabajos</h3>
+                    <p class="text-text-dark mb-4">Una muestra de nuestros hologramas implementados en diferentes eventos y sectores. Desde ferias comerciales hasta lanzamientos de productos, cada proyecto demuestra nuestro compromiso con la excelencia y la innovación.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <span class="bg-accent bg-opacity-20 text-accent px-3 py-1 rounded-full text-sm">Feria Comercial</span>
+                        <span class="bg-accent bg-opacity-20 text-accent px-3 py-1 rounded-full text-sm">Lanzamiento</span>
+                        <span class="bg-accent bg-opacity-20 text-accent px-3 py-1 rounded-full text-sm">Retail</span>
+                        <span class="bg-accent bg-opacity-20 text-accent px-3 py-1 rounded-full text-sm">Corporativo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="section bg-secondary" id="tecnologia">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title" data-aos="fade-right">Nuestra Tecnología</h2>
+            <p class="mb-12 md:w-2/3" data-aos="fade-up">Utilizamos las tecnologías más avanzadas para crear experiencias holográficas inmersivas que capturan la atención y generan resultados medibles.</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="tech-card bg-primary rounded-lg p-6" data-aos="fade-up">
+                    <div class="text-4xl mb-4 text-accent">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Hologramas Pepper's Ghost</h3>
+                    <p class="text-text-dark mb-4">Técnica clásica mejorada con tecnología moderna. Perfecta para proyecciones grandes y eventos masivos.</p>
+                    <ul class="space-y-2 text-sm text-text-dark">
+                        <li>• Proyecciones de hasta 10 metros</li>
+                        <li>• Compatible con cualquier contenido</li>
+                        <li>• Instalación rápida</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card bg-primary rounded-lg p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl mb-4 text-accent">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Hologramas Fan LED</h3>
+                    <p class="text-text-dark mb-4">Pantallas LED giratorias que crean imágenes 3D flotantes. Ideal para espacios reducidos.</p>
+                    <ul class="space-y-2 text-sm text-text-dark">
+                        <li>• Imágenes 360° completas</li>
+                        <li>• Interactividad táctil</li>
+                        <li>• Bajo consumo energético</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card bg-primary rounded-lg p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl mb-4 text-accent">
+                        <i class="fas fa-vr-cardboard"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Realidad Aumentada</h3>
+                    <p class="text-text-dark mb-4">Superposición de elementos digitales en el mundo real. Experiencias personalizadas para cada usuario.</p>
+                    <ul class="space-y-2 text-sm text-text-dark">
+                        <li>• Compatible con smartphones</li>
+                        <li>• Contenido personalizable</li>
+                        <li>• Métricas detalladas</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card bg-primary rounded-lg p-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-4xl mb-4 text-accent">
+                        <i class="fas fa-hand-pointer"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Sensores de Movimiento</h3>
+                    <p class="text-text-dark mb-4">Tecnología de detección que permite interacción gestual con los hologramas.</p>
+                    <ul class="space-y-2 text-sm text-text-dark">
+                        <li>• Detección de hasta 5 metros</li>
+                        <li>• Respuesta en tiempo real</li>
+                        <li>• Múltiples usuarios simultáneos</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card bg-primary rounded-lg p-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-4xl mb-4 text-accent">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Software 3D Avanzado</h3>
+                    <p class="text-text-dark mb-4">Herramientas profesionales para crear contenido holográfico de alta calidad.</p>
+                    <ul class="space-y-2 text-sm text-text-dark">
+                        <li>• Renderizado en tiempo real</li>
+                        <li>• Animaciones fluidas</li>
+                        <li>• Optimización automática</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card bg-primary rounded-lg p-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="text-4xl mb-4 text-accent">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Analytics en Tiempo Real</h3>
+                    <p class="text-text-dark mb-4">Sistema de medición que captura datos de engagement y ROI durante el evento.</p>
+                    <ul class="space-y-2 text-sm text-text-dark">
+                        <li>• Métricas de interacción</li>
+                        <li>• Análisis de audiencia</li>
+                        <li>• Reportes automáticos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Map Section -->
+    <section class="section" id="eventos">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title" data-aos="fade-right">Mapa de Eventos</h2>
+            <p class="mb-12 md:w-2/3" data-aos="fade-up">Descubre dónde hemos implementado nuestros hologramas y encuentra oportunidades para tu próximo evento.</p>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="events-map bg-secondary rounded-lg p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6">Próximos Eventos</h3>
+                        <div class="space-y-4">
+                            <div class="event-item flex items-start p-4 bg-primary rounded-lg">
+                                <div class="event-date text-center mr-4">
+                                    <div class="text-accent font-bold text-xl">15</div>
+                                    <div class="text-text-dark text-sm">MAR</div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Expo Retail 2025</h4>
+                                    <p class="text-text-dark text-sm">Centro Costa Salguero, Buenos Aires</p>
+                                    <span class="bg-accent bg-opacity-20 text-accent px-2 py-1 rounded text-xs">Disponible</span>
+                                </div>
+                            </div>
+
+                            <div class="event-item flex items-start p-4 bg-primary rounded-lg">
+                                <div class="event-date text-center mr-4">
+                                    <div class="text-accent font-bold text-xl">22</div>
+                                    <div class="text-text-dark text-sm">MAR</div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Tech Summit Argentina</h4>
+                                    <p class="text-text-dark text-sm">La Rural, Buenos Aires</p>
+                                    <span class="bg-red-500 bg-opacity-20 text-red-400 px-2 py-1 rounded text-xs">Completo</span>
+                                </div>
+                            </div>
+
+                            <div class="event-item flex items-start p-4 bg-primary rounded-lg">
+                                <div class="event-date text-center mr-4">
+                                    <div class="text-accent font-bold text-xl">05</div>
+                                    <div class="text-text-dark text-sm">ABR</div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Auto Show 2025</h4>
+                                    <p class="text-text-dark text-sm">Predio Ferial, Córdoba</p>
+                                    <span class="bg-accent bg-opacity-20 text-accent px-2 py-1 rounded text-xs">Disponible</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left">
+                    <div class="stats-grid grid grid-cols-2 gap-4">
+                        <div class="stat-card bg-secondary p-6 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-accent mb-2">47</div>
+                            <div class="text-text-dark">Eventos Atendidos</div>
+                        </div>
+                        <div class="stat-card bg-secondary p-6 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-accent mb-2">12</div>
+                            <div class="text-text-dark">Ciudades</div>
+                        </div>
+                        <div class="stat-card bg-secondary p-6 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-accent mb-2">89%</div>
+                            <div class="text-text-dark">Satisfacción</div>
+                        </div>
+                        <div class="stat-card bg-secondary p-6 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-accent mb-2">5</div>
+                            <div class="text-text-dark">Eventos/Mes</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-6 bg-primary rounded-lg">
+                        <h4 class="font-semibold mb-4">¿Tu evento no está en la lista?</h4>
+                        <p class="text-text-dark mb-4">Contáctanos para evaluar la viabilidad de implementar hologramas en tu evento específico.</p>
+                        <button class="btn-primary open-modal">Consultar Disponibilidad</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-primary border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-2xl font-bold mb-4 flex items-center">
+                        <span class="text-accent mr-2">HYPNO</span>
+                        <span class="text-xs uppercase tracking-widest text-text-dark">Argentina</span>
+                    </h4>
+                    <p class="text-text-dark mb-4">Multiplicamos las ventas de nuestros clientes en eventos a través de hologramas 3D.</p>
+                    <div class="flex space-x-4">
+                        <a href="javascript:void(0)" class="text-text-dark hover:text-accent transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="text-text-dark hover:text-accent transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="text-text-dark hover:text-accent transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="text-text-dark hover:text-accent transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Enlaces rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#problema" class="text-text-dark hover:text-accent transition-colors">El problema</a></li>
+                        <li><a href="#solucion" class="text-text-dark hover:text-accent transition-colors">Nuestra solución</a></li>
+                        <li><a href="#resultados" class="text-text-dark hover:text-accent transition-colors">Resultados</a></li>
+                        <li><a href="#proceso" class="text-text-dark hover:text-accent transition-colors">Proceso</a></li>
+                        <li><a href="#casos" class="text-text-dark hover:text-accent transition-colors">Casos de éxito</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Servicios</h4>
+                    <ul class="space-y-2">
+                        <li><a href="javascript:void(0)" class="text-text-dark hover:text-accent transition-colors">Hologramas para eventos</a></li>
+                        <li><a href="javascript:void(0)" class="text-text-dark hover:text-accent transition-colors">Stands interactivos</a></li>
+                        <li><a href="javascript:void(0)" class="text-text-dark hover:text-accent transition-colors">Vitrinas holográficas</a></li>
+                        <li><a href="javascript:void(0)" class="text-text-dark hover:text-accent transition-colors">Presentaciones corporativas</a></li>
+                        <li><a href="javascript:void(0)" class="text-text-dark hover:text-accent transition-colors">Soluciones retail</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contacto</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-accent mt-1 mr-2"></i>
+                            <span class="text-text-dark">Av. del Libertador 6250, Buenos Aires, Argentina</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt text-accent mt-1 mr-2"></i>
+                            <span class="text-text-dark">+54 11 5555-7890</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-accent mt-1 mr-2"></i>
+                            <span class="text-text-dark">info@hypno.com.ar</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 text-center">
+                    <p class="text-text-dark text-sm">© 2025 Hypno Argentina. Todos los derechos reservados.</p>
+                    <p class="text-text-dark text-sm">Desarrollado por <a href="https://kazecode.com.ar" target="_blank" rel="noopener" class="text-accent hover:text-white transition-colors font-semibold">Kazecode</a></p>
+                </div>
+                <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6 mt-4 md:mt-0 justify-center">
+                    <a href="javascript:void(0)" class="text-text-dark hover:text-accent transition-colors text-sm">Política de privacidad</a>
+                    <a href="javascript:void(0)" class="text-text-dark hover:text-accent transition-colors text-sm">Términos y condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating CTA -->
+    <button class="floating-cta btn-primary open-modal flex items-center">
+        <i class="fas fa-rocket floating-icon mr-2"></i>
+        <span class="floating-text">¡Captura miradas!</span>
+    </button>
+
+    <!-- Form Modal -->
+    <div class="form-modal" id="form-modal">
+        <div class="form-content">
+            <span class="close-modal">&times;</span>
+            <h3 class="text-2xl font-bold mb-6">Multiplica tus ventas en el próximo evento</h3>
+            <form id="modal-form">
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block mb-2">Nombre completo</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div>
+                        <label class="block mb-2">Empresa</label>
+                        <input type="text" name="company" required>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block mb-2">Email</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div>
+                        <label class="block mb-2">Teléfono</label>
+                        <input type="tel" name="phone" required>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Fecha del próximo evento</label>
+                    <input type="date" name="eventDate" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">¿Qué te gustaría lograr?</label>
+                    <select name="goal" required>
+                        <option value="">Seleccionar...</option>
+                        <option value="leads">Generar más leads</option>
+                        <option value="sales">Aumentar ventas directas</option>
+                        <option value="awareness">Crear conciencia de marca</option>
+                        <option value="launch">Lanzar un nuevo producto</option>
+                        <option value="traffic">Atraer más tráfico a mi stand</option>
+                    </select>
+                </div>
+                <div class="mt-6">
+                    <button type="submit" class="btn-primary w-full">Solicitar demostración</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script id="app-script">
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease',
+                once: true
+            });
+            
+            // Sticky Navbar
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Close mobile menu if open
+                        mobileMenu.classList.add('hidden');
+                        
+                        // Scroll to target
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Modal handling
+            const modal = document.getElementById('form-modal');
+            const openModalButtons = document.querySelectorAll('.open-modal');
+            const closeModal = document.querySelector('.close-modal');
+            const formContent = document.querySelector('.form-content');
+            
+            openModalButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Aplicar efecto de cristal durante la animación
+                    if (formContent) {
+                        setTimeout(() => {
+                            formContent.classList.add('glass-effect');
+                        }, 2000); // Aplicar después de 2 segundos
+                        
+                        setTimeout(() => {
+                            formContent.classList.remove('glass-effect');
+                        }, 3000); // Remover después de 3 segundos
+                    }
+                });
+            });
+            
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Counter animation
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+            
+            const startCounters = () => {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    let count = 0;
+                    const increment = target / speed;
+                    
+                    const updateCount = () => {
+                        if (count < target) {
+                            count += increment;
+                            counter.innerText = Math.ceil(count);
+                            setTimeout(updateCount, 1);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    
+                    updateCount();
+                });
+            };
+            
+            // Start counters when they come into view
+            const observerOptions = {
+                threshold: 0.5
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            const metricsSection = document.querySelector('#resultados');
+            if (metricsSection) {
+                observer.observe(metricsSection);
+            }
+            
+            // ROI Calculator
+            const roiCalculator = document.getElementById('roi-calculator');
+            const resultsContainer = document.getElementById('results-container');
+            
+            if (roiCalculator) {
+                roiCalculator.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form values
+                    const formData = new FormData(roiCalculator);
+                    const visitors = parseInt(formData.get('visitors'));
+                    const budget = parseInt(formData.get('budget'));
+                    const customerValue = parseInt(formData.get('customerValue'));
+                    const conversionRate = parseFloat(formData.get('conversionRate'));
+                    
+                    // Calculate results
+                    const projectedVisitors = Math.round(visitors * 5); // 500% increase
+                    const normalLeads = Math.round(visitors * (conversionRate / 100));
+                    const projectedLeads = Math.round(projectedVisitors * ((conversionRate * 1.5) / 100)); // 50% better conversion
+                    const normalRevenue = normalLeads * customerValue;
+                    const projectedRevenue = projectedLeads * customerValue;
+                    const roi = Math.round(((projectedRevenue - normalRevenue) / budget) * 100);
+                    
+                    // Display results
+                    document.getElementById('visitor-result').innerText = projectedVisitors;
+                    document.getElementById('leads-result').innerText = projectedLeads;
+                    document.getElementById('roi-result').innerText = roi;
+                    
+                    resultsContainer.classList.remove('hidden');
+                    
+                    // Scroll to results
+                    setTimeout(() => {
+                        resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 100);
+                });
+            }
+            
+            // Handle form submissions with animations
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Add success animation
+                    this.classList.add('form-success');
+                    setTimeout(() => {
+                        this.classList.remove('form-success');
+                    }, 600);
+                    
+                    alert('Este es un prototipo. En la versión completa, este formulario enviará los datos a tu CRM y recibirás una notificación por email.');
+                    contactForm.reset();
+                });
+            }
+            
+            const modalForm = document.getElementById('modal-form');
+            if (modalForm) {
+                modalForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Add success animation
+                    this.classList.add('form-success');
+                    setTimeout(() => {
+                        this.classList.remove('form-success');
+                    }, 600);
+                    
+                    alert('Este es un prototipo. En la versión completa, este formulario enviará los datos a tu CRM y recibirás una notificación por email.');
+                    modalForm.reset();
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            }
+            
+            // Create floating particles
+            function createParticles() {
+                const particlesContainer = document.createElement('div');
+                particlesContainer.className = 'floating-particles';
+                document.body.appendChild(particlesContainer);
+                
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 8 + 's';
+                    particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
+            // Initialize particles
+            createParticles();
+            
+            // Floating CTA animation
+            const floatingCTA = document.querySelector('.floating-cta');
+            if (floatingCTA) {
+                // Mostrar completo por 1 segundo
+                setTimeout(() => {
+                    // Después de 5 segundos, hacer compacto
+                    setTimeout(() => {
+                        floatingCTA.classList.add('compact');
+                    }, 5000);
+                }, 1000);
+                
+                // Al hacer hover, mostrar completo temporalmente
+                floatingCTA.addEventListener('mouseenter', function() {
+                    this.classList.remove('compact');
+                });
+                
+                floatingCTA.addEventListener('mouseleave', function() {
+                    // Volver a compacto después de 2 segundos sin hover
+                    setTimeout(() => {
+                        if (!this.matches(':hover')) {
+                            this.classList.add('compact');
+                        }
+                    }, 2000);
+                });
+            }
+            
+            // FAQ Functionality
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Close other open questions
+                    faqQuestions.forEach(q => {
+                        if (q !== this) {
+                            q.classList.remove('active');
+                            q.nextElementSibling.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current question
+                    this.classList.toggle('active');
+                    answer.classList.toggle('active');
+                });
+            });
+            
+            // Add form field animations
+            const formFields = document.querySelectorAll('input, select, textarea');
+            formFields.forEach(field => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'form-field-animation';
+                field.parentNode.insertBefore(wrapper, field);
+                wrapper.appendChild(field);
+                
+                // Add typing effect to labels
+                const label = field.previousElementSibling;
+                if (label && label.tagName === 'LABEL') {
+                    label.classList.add('typing-label');
+                }
+                
+                // Add validation class only when user interacts
+                field.addEventListener('blur', function() {
+                    if (this.value.length > 0) {
+                        this.classList.add('validated');
+                    }
+                });
+                
+                field.addEventListener('input', function() {
+                    if (this.value.length > 0) {
+                        this.classList.add('validated');
+                    }
+                });
+            });
+
+            // Add event listener to open modal when .open-modal button is clicked
+            document.querySelector('.open-modal').addEventListener('click', function() {
+              // Code to open modal goes here
+              document.getElementById('modal').classList.add('active');
+            });
+        });
+    </script>
+<script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
+</body>
+</html>
